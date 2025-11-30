@@ -37,7 +37,7 @@ Developer feedback loop
 ### Initialization
 ```swift
 SPT.configure(.init(
-    slowBodyThreshold: 16.0,  // ms
+    slowViewThreshold: 16.0,  // ms
     loggingEnabled: true
 ))
 ```

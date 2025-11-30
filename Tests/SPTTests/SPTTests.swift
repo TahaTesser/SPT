@@ -92,9 +92,9 @@ func multipleEventsAreCaptured() async throws {
 
 @Test
 func configurationThresholdWorks() async throws {
-    SPT.configure(.init(slowBodyThreshold: 5.0, loggingEnabled: true))
+    SPT.configure(.init(slowViewThreshold: 5.0, loggingEnabled: true))
 
-    #expect(SPT.shared.configuration.slowBodyThreshold == 5.0)
+    #expect(SPT.shared.configuration.slowViewThreshold == 5.0)
     #expect(SPT.shared.configuration.loggingEnabled == true)
 }
 
@@ -102,7 +102,7 @@ func configurationThresholdWorks() async throws {
 func defaultConfigurationValues() async throws {
     let config = SPTConfiguration.default
 
-    #expect(config.slowBodyThreshold == 16.0)
+    #expect(config.slowViewThreshold == 16.0)
     #expect(config.loggingEnabled == true)
 }
 

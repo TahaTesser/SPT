@@ -30,7 +30,7 @@ import SPT
 struct MyApp: App {
     init() {
         SPT.configure(.init(
-            slowBodyThreshold: 16.0, // ms (default, ~1 frame at 60fps)
+            slowViewThreshold: 16.0, // ms (default, ~1 frame at 60fps)
             loggingEnabled: true
         ))
     }
@@ -102,5 +102,5 @@ When view construction exceeds the threshold, SPT logs a warning:
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `slowBodyThreshold` | `16.0` | Duration in ms that triggers a warning |
+| `slowViewThreshold` | `16.0` | Duration in ms that triggers a warning |
 | `loggingEnabled` | `true` | Enable/disable logging |

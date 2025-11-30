@@ -12,7 +12,7 @@ import SwiftUI
 struct SPTSampleApp: App {
     init() {
         SPT.configure(.init(
-            slowBodyThreshold: 1.0,
+            slowViewThreshold: 1.0,
             loggingEnabled: true
         ))
     }

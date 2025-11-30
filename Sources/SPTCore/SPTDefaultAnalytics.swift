@@ -21,7 +21,7 @@ final class SPTDefaultAnalytics: SPTEventConsumer, @unchecked Sendable {
         let config = SPT.shared.configuration
         guard config.loggingEnabled else { return }
 
-        let threshold = config.slowBodyThreshold
+        let threshold = config.slowViewThreshold
         let duration = String(format: "%.2f", measurement.durationMs)
 
         if measurement.durationMs >= threshold {
