@@ -4,7 +4,7 @@
 
 # SwiftUI Performance Toolkit (SPT)
 
-A lightweight Swift Package for monitoring SwiftUI performance, focused on detecting slow view body computations.
+A lightweight, automated solution for SwiftUI performance monitoring, profiling, and optimization — delivered as a Swift Package. 
 
 ## Requirements
 
