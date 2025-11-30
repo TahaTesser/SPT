@@ -1,19 +1,36 @@
 import SPTCore
 import SwiftUI
 
-/// Internal container view that measures the time to construct its content.
-struct SPTProfiledContainer<Content: View>: View {
+/// Container that profiles its content based on the specified measurement type.
+///
+/// Use this when you need to measure work during view body evaluation:
+/// ```swift
+/// SPTProfile(name: "ExpensiveView") {
+///     let data = expensiveComputation()
+///     MyView(data: data)
+/// }
+/// ```
+public struct SPTProfile<Content: View>: View {
     private let name: String
+    private let measuring: SPTMeasurementType
     private let content: () -> Content
 
-    init(name: String, @ViewBuilder content: @escaping () -> Content) {
+    public init(
+        name: String,
+        measuring: SPTMeasurementType = .viewBody,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
         self.name = name
+        self.measuring = measuring
         self.content = content
     }
 
-    var body: some View {
-        SPTInstrumentation.measureViewBody(name: name) {
-            content()
+    public var body: some View {
+        switch measuring {
+        case .viewBody:
+            SPTInstrumentation.measureViewBody(name: name) {
+                content()
+            }
         }
     }
 }
@@ -21,13 +38,11 @@ struct SPTProfiledContainer<Content: View>: View {
 // MARK: - View Extension
 
 extension View {
-    /// Measures the time to construct this view within its parent's body.
+    /// Profiles this view with the specified measurement type.
     ///
-    /// This modifier wraps `self` in an `SPTProfiledContainer`, timing how long it takes
-    /// to evaluate this view expression. When the duration exceeds the configured
-    /// `slowBodyThreshold`, a warning is logged.
-    ///
-    /// - Parameter name: A logical name for the measurement (e.g. "HomeView").
+    /// - Parameters:
+    ///   - name: A logical name for the measurement (e.g. "HomeView").
+    ///   - measuring: The type of measurement to perform. Defaults to `.viewBody`.
     /// - Returns: A profiled view that emits timing events.
     ///
     /// Example:
@@ -42,8 +57,8 @@ extension View {
     ///     }
     /// }
     /// ```
-    public func sptProfile(_ name: String) -> some View {
-        SPTProfiledContainer(name: name) {
+    public func sptProfile(_ name: String, measuring: SPTMeasurementType = .viewBody) -> some View {
+        SPTProfile(name: name, measuring: measuring) {
             self
         }
     }

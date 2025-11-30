@@ -1,5 +1,12 @@
 import Foundation
 
+/// Types of measurements SPT can perform
+public enum SPTMeasurementType: Sendable {
+    /// Measures view body construction time
+    case viewBody
+    // Future: case renderTime, case layoutPass, etc.
+}
+
 /// Payload for view-body measurements
 public struct SPTViewBodyMeasurement: Sendable {
     public let name: String

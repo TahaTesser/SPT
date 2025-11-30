@@ -19,13 +19,17 @@ final class SPTDefaultAnalytics: SPTEventConsumer, @unchecked Sendable {
         guard case let .viewBodyMeasurement(measurement) = event.kind else { return }
 
         let config = SPT.shared.configuration
-        let threshold = config.slowBodyThreshold
-
         guard config.loggingEnabled else { return }
 
+        let threshold = config.slowBodyThreshold
+        let duration = String(format: "%.2f", measurement.durationMs)
+
         if measurement.durationMs >= threshold {
-            let duration = String(format: "%.1f", measurement.durationMs)
-            logger.warning("Slow view body: \(measurement.name) took \(duration) ms (threshold: \(threshold) ms)")
+            let message = "⚠️ [SPT] Slow view body: \(measurement.name) took \(duration) ms (threshold: \(threshold) ms)"
+            print(message)
+            logger.warning("\(message)")
+        } else {
+            print("📊 [SPT] \(measurement.name): \(duration) ms")
         }
     }
 }

@@ -49,6 +49,10 @@ struct MyApp: App {
 
 SPT measures how long it takes to construct view hierarchies (evaluate view expressions), not the rendering or layout phases managed by SwiftUI.
 
+#### Modifier Style (`.sptProfile`)
+
+Use for simple view wrapping:
+
 ```swift
 struct HomeView: View {
     var body: some View {
@@ -61,10 +65,37 @@ struct HomeView: View {
 }
 ```
 
+#### Container Style (`SPTProfile`)
+
+Use when you need to measure expensive work during body evaluation:
+
+```swift
+struct ExpensiveView: View {
+    var body: some View {
+        SPTProfile(name: "ExpensiveView") {
+            let data = expensiveComputation()
+            MyContentView(data: data)
+        }
+    }
+}
+```
+
+#### Explicit Measurement Type
+
+Both APIs accept an optional `measuring` parameter (defaults to `.viewBody`):
+
+```swift
+.sptProfile("HomeView", measuring: .viewBody)
+
+SPTProfile(name: "ExpensiveView", measuring: .viewBody) {
+    // content
+}
+```
+
 When view construction exceeds the threshold, SPT logs a warning:
 
 ```
-Slow view body: HomeView took 23.7 ms (threshold: 16.0 ms)
+⚠️ [SPT] Slow view body: HomeView took 23.7 ms (threshold: 16.0 ms)
 ```
 
 ## Configuration Options

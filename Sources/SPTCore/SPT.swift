@@ -23,5 +23,7 @@ public final class SPT: @unchecked Sendable {
         defer { shared.lock.unlock() }
         shared._configuration = configuration
         SPTDefaultAnalytics.ensureInitialized()
+        let threshold = configuration.slowBodyThreshold
+        print("✅ [SPT] Configured with threshold: \(threshold)ms, logging: \(configuration.loggingEnabled)")
     }
 }

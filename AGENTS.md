@@ -33,18 +33,44 @@ Overlay UI or CI Reporter
 Developer feedback loop
 
 ## Core API
-### Initialization
-`SPT.configure(.default)`
 
-## View Profiling Modifier
+### Initialization
+```swift
+SPT.configure(.init(
+    slowBodyThreshold: 16.0,  // ms
+    loggingEnabled: true
+))
+```
+
+### Profiling API
+
+#### Modifier Style (`.sptProfile`)
 ```swift
 struct MyView: View {
     var body: some View {
         Content()
             .sptProfile("MyView")
+            // or with explicit measurement type
+            .sptProfile("MyView", measuring: .viewBody)
     }
 }
 ```
+
+#### Container Style (`SPTProfile`)
+Use when measuring expensive work during body evaluation:
+```swift
+struct ExpensiveView: View {
+    var body: some View {
+        SPTProfile(name: "ExpensiveView") {
+            let data = expensiveComputation()
+            MyContentView(data: data)
+        }
+    }
+}
+```
+
+### Measurement Types
+- `.viewBody` - Measures view body construction time (default)
 
 # Commands
 
