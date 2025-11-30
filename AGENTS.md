@@ -2,9 +2,6 @@
 
 A complete, lightweight, automated solution for SwiftUI performance monitoring, profiling, and optimization — delivered as a Swift Package. 
 
-## Features
-- Detect slow view-body computations
-
 ## Architecture Overview
 - SwiftUI Performance Toolkit (SPT)
 - Instrumentation
@@ -67,9 +64,6 @@ struct ExpensiveView: View {
     }
 }
 ```
-
-### Measurement Types
-- `.viewBody` - Measures view body construction time (default)
 
 # Commands
 
