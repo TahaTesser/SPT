@@ -95,7 +95,7 @@ SPTProfile(name: "ExpensiveView", measuring: .viewBody) {
 When view construction exceeds the threshold, SPT logs a warning:
 
 ```
-⚠️ [SPT] Slow view body: HomeView took 23.7 ms (threshold: 16.0 ms)
+[SPT] Slow view construction: HomeView - 23.7ms (threshold: 16.0ms)
 ```
 
 ## Configuration Options

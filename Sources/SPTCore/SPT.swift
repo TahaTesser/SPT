@@ -24,6 +24,6 @@ public final class SPT: @unchecked Sendable {
         shared._configuration = configuration
         SPTDefaultAnalytics.ensureInitialized()
         let threshold = configuration.slowViewThreshold
-        print("✅ [SPT] Configured with threshold: \(threshold)ms, logging: \(configuration.loggingEnabled)")
+        print("[SPT] Configured - threshold: \(threshold)ms, logging: \(configuration.loggingEnabled)")
     }
 }

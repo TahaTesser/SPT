@@ -25,11 +25,12 @@ final class SPTDefaultAnalytics: SPTEventConsumer, @unchecked Sendable {
         let duration = String(format: "%.2f", measurement.durationMs)
 
         if measurement.durationMs >= threshold {
-            let message = "⚠️ [SPT] Slow view body: \(measurement.name) took \(duration) ms (threshold: \(threshold) ms)"
+            let name = measurement.name
+            let message = "[SPT] Slow view construction: \(name) - \(duration)ms (threshold: \(threshold)ms)"
             print(message)
             logger.warning("\(message)")
         } else {
-            print("📊 [SPT] \(measurement.name): \(duration) ms")
+            print("[SPT] View construction: \(measurement.name) - \(duration)ms")
         }
     }
 }
