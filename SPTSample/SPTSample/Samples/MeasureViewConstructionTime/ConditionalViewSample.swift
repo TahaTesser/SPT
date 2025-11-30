@@ -3,18 +3,18 @@
 //  SPTSample
 //
 
-import SwiftUI
 import SPT
+import SwiftUI
 
 /// Demonstrates profiling conditional view rendering
 struct ConditionalViewSample: View {
     @State private var viewState: ViewState = .loading
-    
+
     var body: some View {
         VStack(spacing: 20) {
             Text("Conditional View Sample")
                 .font(.headline)
-            
+
             Picker("State", selection: $viewState) {
                 ForEach(ViewState.allCases) { state in
                     Text(state.rawValue.capitalized).tag(state)
@@ -22,9 +22,9 @@ struct ConditionalViewSample: View {
             }
             .pickerStyle(.segmented)
             .padding(.horizontal)
-            
+
             Spacer()
-            
+
             Group {
                 switch viewState {
                 case .loading:
@@ -42,7 +42,7 @@ struct ConditionalViewSample: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
+
             Spacer()
         }
         .padding()
@@ -91,7 +91,7 @@ private struct ContentStateView: View {
                 .font(.title2)
             Text("Your data is ready")
                 .foregroundStyle(.secondary)
-            
+
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(1...3, id: \.self) { i in
                     HStack {

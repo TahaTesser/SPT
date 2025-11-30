@@ -3,8 +3,8 @@
 //  SPTSample
 //
 
-import SwiftUI
 import SPT
+import SwiftUI
 
 /// Demonstrates detection of slow view body computation
 struct SlowViewSample: View {
@@ -34,15 +34,18 @@ struct SlowViewSample: View {
 private struct SlowContentView: View {
     let delayMs: Double
 
+    private var simulatedWork: EmptyView {
+        if delayMs > 0 {
+            Thread.sleep(forTimeInterval: delayMs / 1000.0)
+        }
+        return EmptyView()
+    }
+
     var body: some View {
         // Use SPTProfile to measure work INSIDE the closure
         SPTProfile(name: "SlowContentView") {
             // Expensive work happens HERE, inside the measured closure
-            let _ = {
-                if delayMs > 0 {
-                    Thread.sleep(forTimeInterval: delayMs / 1000.0)
-                }
-            }()
+            simulatedWork
 
             VStack(spacing: 16) {
                 Image(systemName: "tortoise.fill")

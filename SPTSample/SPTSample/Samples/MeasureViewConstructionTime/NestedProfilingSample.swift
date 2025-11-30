@@ -3,8 +3,8 @@
 //  SPTSample
 //
 
-import SwiftUI
 import SPT
+import SwiftUI
 
 /// Demonstrates profiling nested view hierarchies
 struct NestedProfilingSample: View {
@@ -12,20 +12,20 @@ struct NestedProfilingSample: View {
         VStack(spacing: 20) {
             Text("Nested Profiling Sample")
                 .font(.headline)
-            
+
             Text("Each section is independently profiled")
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            
+
             HeaderSection()
                 .sptProfile("HeaderSection")
-            
+
             ContentSection()
                 .sptProfile("ContentSection")
-            
+
             FooterSection()
                 .sptProfile("FooterSection")
-            
+
             Spacer()
         }
         .padding()
@@ -55,6 +55,7 @@ private struct ContentSection: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Content Section")
                 .font(.title3)
+            // swiftlint:disable:next line_length
             Text("This demonstrates how nested views can each have their own profiling to identify which specific section is slow.")
                 .font(.body)
                 .foregroundStyle(.secondary)

@@ -1,10 +1,12 @@
 included:
   - Sources
   - Tests
+  - SPTSample/SPTSample
 
 excluded:
   - .build
   - Package.swift
+  - SPTSample/SPTSample.xcodeproj
 
 disabled_rules:
   - trailing_comma

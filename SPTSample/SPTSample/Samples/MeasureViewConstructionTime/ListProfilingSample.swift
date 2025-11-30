@@ -3,19 +3,19 @@
 //  SPTSample
 //
 
-import SwiftUI
 import SPT
+import SwiftUI
 
 /// Demonstrates profiling list and collection views
 struct ListProfilingSample: View {
     @State private var items = (1...50).map { Item(id: $0, title: "Item \($0)") }
     @State private var isGrid = false
-    
+
     var body: some View {
         VStack {
             Toggle("Grid Layout", isOn: $isGrid)
                 .padding(.horizontal)
-            
+
             if isGrid {
                 GridView(items: items)
                     .sptProfile("GridView")
@@ -41,7 +41,7 @@ private struct Item: Identifiable {
 
 private struct ListView: View {
     let items: [Item]
-    
+
     var body: some View {
         List(items) { item in
             ItemRow(item: item)
@@ -51,11 +51,11 @@ private struct ListView: View {
 
 private struct GridView: View {
     let items: [Item]
-    
+
     private let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
-    
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
@@ -70,7 +70,7 @@ private struct GridView: View {
 
 private struct ItemRow: View {
     let item: Item
-    
+
     var body: some View {
         HStack {
             Circle()
@@ -89,7 +89,7 @@ private struct ItemRow: View {
 
 private struct ItemCell: View {
     let item: Item
-    
+
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 8)
