@@ -13,20 +13,8 @@ struct ContentView: View {
         NavigationStack {
             List {
                 Section("Measure View Construction Time") {
-                    NavigationLink("Slow View") {
-                        SlowViewSample()
-                    }
-                    NavigationLink("Nested Profiling") {
-                        NestedProfilingSample()
-                    }
-                    NavigationLink("List Profiling") {
-                        ListProfilingSample()
-                    }
-                    NavigationLink("State Rebuilds") {
-                        StateRebuildSample()
-                    }
-                    NavigationLink("Conditional Views") {
-                        ConditionalViewSample()
+                    NavigationLink("View Construction") {
+                        ViewConstructionSample()
                     }
                 }
             }
