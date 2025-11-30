@@ -29,14 +29,15 @@ split_commits = false
 commit_parsers = [
     { message = "^feat", group = "Features" },
     { message = "^fix", group = "Bug Fixes" },
-    { message = "^doc", group = "Documentation" },
     { message = "^perf", group = "Performance" },
     { message = "^refactor", group = "Refactor" },
-    { message = "^style", group = "Styling" },
     { message = "^test", group = "Testing" },
-    { message = "^chore\\(release\\)", skip = true },
-    { message = "^chore", group = "Miscellaneous Tasks" },
     { body = ".*security", group = "Security" },
+    { message = "^chore", group = "Miscellaneous" },
+    { message = "^docs", skip = true },
+    { message = "^doc", skip = true },
+    { message = "^ci", skip = true },
+    { message = "^style", skip = true },
 ]
 protect_breaking_commits = false
 filter_commits = false
